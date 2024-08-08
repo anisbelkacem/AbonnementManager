@@ -1,0 +1,104 @@
+﻿@model List<Abonnement>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Abonnement List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Abonnement" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Create New Abonnement
+                </a>
+            </div>
+        </div>
+
+        <table id="tblData" class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Description</th>
+					<th>Client</th>
+					<th>Application</th>
+                    <th>DateDebut</th>
+                    <th>DateFin</th>
+                    <th>Statut</th>
+                    <th></th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+           @*  <tbody>
+                @{
+                    var today = DateTime.Now.ToString("yyyy-MM-dd");
+                }
+
+                @if (Model != null && Model.Any())
+                {
+                    <script>
+                        function checkDateStatus(dateStr) {
+                            var date = new Date(dateStr);
+                            var today = new Date('@today'); // Use Razor to inject the current date
+                            today.setHours(0, 0, 0, 0); // Set time to midnight for accurate comparison
+
+                            if (date >= today) {
+                                return { status: "Active", color: "green" };
+                            } else {
+                                return { status: "Expire", color: "red" };
+                            }
+                        }
+
+                        document.addEventListener('DOMContentLoaded', (event) => {
+                            var dateElements = document.querySelectorAll('.date-status');
+                            dateElements.forEach((element) => {
+                                var dateStr = element.getAttribute('data-date');
+                                var result = checkDateStatus(dateStr);
+                                element.innerText = result.status;
+                                element.style.color = result.color;
+                            });
+                        });
+                    </script>
+
+                    @foreach (var obj in Model)
+                    {
+                        <tr>
+                            <td>@obj.Description</td>
+                            <td>@obj.Application.Name</td>
+                            <td>@obj.Client.Name</td>
+                            <td>@obj.DateDebut</td>
+                            <td>@obj.DateFin</td>
+                            <td class="date-status" data-date="@obj.DateFin"></td>
+                            <td>
+                                <div class="w-75 btn-group" role="group">
+                                    <a asp-controller="Abonnement" asp-action="Upsert" asp-route-id="@obj.Id_Abon" class="btn btn-primary mx-2">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+                                    <a asp-controller="Abonnement" asp-action="Delete" asp-route-id="@obj.Id_Abon" class="btn btn-danger mx-2">
+                                        <i class="bi bi-trash-fill"></i> Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center">No data available</td>
+                    </tr>
+                } 
+            </tbody> *@
+        </table>
+    </div>
+</div>
+@section Scripts {
+	<script src="~/js/abonnement.js"></script>
+}

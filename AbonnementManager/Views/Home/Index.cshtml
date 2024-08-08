@@ -2,7 +2,103 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('~/images/background.jpg') no-repeat center center;
+        background-size: cover;
+        color: white;
+        padding: 100px 0;
+        text-align: center;
+    }
+
+        .hero-section h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-section a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+
+            .hero-section a:hover {
+                color: #ffc107;
+                border-bottom: 2px solid #ffc107;
+            }
+
+    .description-section {
+        padding: 50px 15px;
+        text-align: center;
+    }
+
+        .description-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .description-section p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+    .features-section {
+        padding: 50px 15px;
+        text-align: center;
+    }
+
+        .features-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .features-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .features-section ul li {
+                font-size: 1.25rem;
+                margin-bottom: 20px;
+            }
+
+                .features-section ul li i {
+                    font-size: 2rem;
+                    margin-right: 10px;
+                    color: #337ab7;
+                }
+</style>
+
+<div class="hero-section">
+    <h1 class="display-4">Welcome to Abonnement Manager</h1>
+    <p>Manage all your subscriptions effortlessly.</p>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <a class="btn btn-primary " id="login" asp-area="Identity" asp-page="/Account/Login">Get Started</a>
+    }
+    
+    
+</div>
+
+<div class="description-section">
+    <h2>About Abonnement Manager</h2>
+    <p>Abonnement Manager is your go-to tool for managing clients, applications, and their subscriptions. With Abonnement Manager, you can easily add a client, assign applications to them, and create specific abonnements tailored to their needs.</p>
+</div>
+
+<div class="features-section">
+    <h2>Key Features</h2>
+    <ul>
+        <li><i class="fas fa-user"></i> Client Management</li>
+        <li><i class="fas fa-desktop"></i> Application Management</li>
+        <li><i class="fas fa-file-invoice"></i> Subscription Management</li>
+    </ul>
 </div>

@@ -1,0 +1,92 @@
+﻿@model AbonVM
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">@(Model.Abonnement.Id_Abon != 0 ? "Update" : "Create") Abonnement</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row">
+            <input asp-for="@Model.Abonnement.Id_Abon" hidden />
+            <div class="border p-3">
+                @*<div asp-validation-summary="ModelOnly"></div>*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-floating py-2 col-12">
+                    <select asp-for="@Model.Abonnement.IdClient" asp-items="@Model.ClientList" class="form-select border-0 shadow">
+                        <option disabled selected>--Select Client--</option>
+                    </select>
+                    <label asp-for="@Model.Abonnement.IdClient" class="ms-2">Client</label>
+                    <span asp-validation-for="@Model.Abonnement.IdClient" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating py-2 col-12">
+                    <select asp-for="@Model.Abonnement.IdApp" asp-items="@Model.ApplicationList" class="form-select border-0 shadow">
+                        <option disabled selected>--Select Application--</option>
+                    </select>
+                    <label asp-for="Abonnement.IdApp" class="ms-2">Application</label>
+                    <span asp-validation-for="Abonnement.IdApp" class="text-danger"></span>
+                </div>
+				<label asp-for="@Model.Abonnement.Description" class="ms-2 text-muted"></label>
+                <div class="form-floating py-2 col-12">
+          
+                    <textarea asp-for="@Model.Abonnement.Description" class="form-control border-0 shadow"></textarea>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="@Model.Abonnement.DateDebut" type="date" class="form-control border-0 shadow" min="2024-01-01" />
+                    <label asp-for="@Model.Abonnement.DateDebut" class="ms-2">Date de début</label>
+                    <span asp-validation-for="@Model.Abonnement.DateDebut" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="@Model.Abonnement.DateFin" type="date" class="form-control border-0 shadow" min="2024-01-01" />
+                    <label asp-for="@Model.Abonnement.DateFin" class="ms-2">Date de fin</label>
+                    <span asp-validation-for="@Model.Abonnement.DateFin" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="row pt-2">
+                    <div class="col-6 col-md-3">
+                        @if (Model.Abonnement.Id_Abon != 0)
+                        {
+                            <button type="submit" class="btn btn-primary form-control">Update</button>
+                        }
+                        else
+                        {
+                            
+                            <button type="submit" class="btn btn-primary form-control">Create</button>
+                        }
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Abonnement" asp-action="Index" class="btn btn-outline-primary border  form-control">
+                            Back to List
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
